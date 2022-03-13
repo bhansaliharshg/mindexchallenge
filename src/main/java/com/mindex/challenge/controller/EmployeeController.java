@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/employee")
+@RequestMapping(value = "/employee/")
 public class EmployeeController {
 	private static final Logger LOG = LoggerFactory.getLogger(EmployeeController.class);
 
@@ -32,14 +32,14 @@ public class EmployeeController {
 		return employeeService.create(employee);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("{id}")
 	public Employee read(@PathVariable String id) {
 		LOG.debug("Received employee create request for id [{}]", id);
 
 		return employeeService.read(id);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("{id}")
 	public Employee update(@PathVariable String id, @RequestBody Employee employee) {
 		LOG.debug("Received employee create request for id [{}] and employee [{}]", id, employee);
 
@@ -56,7 +56,7 @@ public class EmployeeController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/{id}/reports")
+	@GetMapping("{id}/reports")
 	public ReportingStructure getReportStructure(@PathVariable String id) {
 		LOG.debug("Received report structure request from id [{}]", id);
 		//Passing employee id to a method of helper class.
@@ -69,7 +69,7 @@ public class EmployeeController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/compensation/{id}")
+	@GetMapping("compensation/{id}")
 	public Compensation getEmployeeCompensation(@PathVariable String id) {
 		LOG.debug("Received request to fetch compensation for id [{}]", id);
 		return compensationService.getCompensation(id);
@@ -86,7 +86,7 @@ public class EmployeeController {
 	 * @param compenstaion
 	 * @return
 	 */
-	@PostMapping("/compensation/{id}")
+	@PostMapping("compensation/{id}")
 	public Compensation createCompensation(@PathVariable String id, @RequestBody Compensation compenstaion) {
 		LOG.debug("Received request to create compensation for id [{}]", id);
 		if (null == compenstaion || null == compenstaion.getEffectiveDate() || 0 >= compenstaion.getSalary()) {

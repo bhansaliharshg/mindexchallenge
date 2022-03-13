@@ -1,7 +1,6 @@
 /**
  * Compensation Service Implementation
  * 
- * @author Harsh Bhansali
  *
  */
 package com.mindex.challenge.service.impl;

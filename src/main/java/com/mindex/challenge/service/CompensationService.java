@@ -4,8 +4,6 @@ import com.mindex.challenge.data.Compensation;
 
 /**
  * CompensationService Interface
- * 
- * @author Harsh Bhansali
  *
  */
 public interface CompensationService {

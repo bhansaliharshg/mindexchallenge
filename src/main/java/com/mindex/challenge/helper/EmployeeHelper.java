@@ -29,7 +29,7 @@ public class EmployeeHelper {
 	 * @return
 	 */
 	public ReportingStructure fillReportingStructure(String id) {
-		LOG.debug("Creating employee structure and counting reports for id [{}]", id);
+		LOG.debug("Creating employee reporting structure and counting reports for id [{}]", id);
 		noOfReports = 0;
 		Employee employee = employeeService.read(id);
 		return new ReportingStructure(fillReportingStructureRec(employee), noOfReports);
