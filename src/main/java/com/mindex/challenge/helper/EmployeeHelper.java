@@ -22,6 +22,12 @@ public class EmployeeHelper {
 
 	private int noOfReports = 0;
 
+	/**
+	 * Function responsible for updating employee reports details and returns reporting structure object
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public ReportingStructure fillReportingStructure(String id) {
 		LOG.debug("Creating employee structure and counting reports for id [{}]", id);
 		noOfReports = 0;
@@ -29,6 +35,12 @@ public class EmployeeHelper {
 		return new ReportingStructure(fillReportingStructureRec(employee), noOfReports);
 	}
 
+	/**
+	 * Recursive helper function
+	 * 
+	 * @param employee
+	 * @return
+	 */
 	private Employee fillReportingStructureRec(Employee employee) {
 		if (null != employee && null != employee.getDirectReports()) {
 			List<Employee> reportees = employee.getDirectReports();
@@ -41,6 +53,13 @@ public class EmployeeHelper {
 		return employee;
 	}
 	
+	/**
+	 * Function responsible for fetching employee data based on employee id and updating the compensation object
+	 * 
+	 * @param id
+	 * @param compensation
+	 * @return
+	 */
 	public Compensation fetchEmployeeById(String id, Compensation compensation) {
 		compensation.setEmployee(employeeService.read(id));
 		return compensation;

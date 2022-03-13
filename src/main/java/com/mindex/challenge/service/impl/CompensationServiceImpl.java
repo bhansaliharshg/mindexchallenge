@@ -1,3 +1,9 @@
+/**
+ * Compensation Service Implementation
+ * 
+ * @author Harsh Bhansali
+ *
+ */
 package com.mindex.challenge.service.impl;
 
 import org.slf4j.Logger;
@@ -17,6 +23,9 @@ public class CompensationServiceImpl implements CompensationService {
 	@Autowired
 	private CompensationRepository compensationRepository;
 
+	/**
+	 * Function responsible for fetching compensation based on employee id
+	 */
 	@Override
 	public Compensation getCompensation(String id) {
 		LOG.debug("Fetching compensation for employee with id [{}]", id);
@@ -27,6 +36,9 @@ public class CompensationServiceImpl implements CompensationService {
 		return compensation;
 	}
 
+	/**
+	 * Function responsible for creating Compensation
+	 */
 	@Override
 	public Compensation createCompensation(Compensation compensation) {
 		LOG.debug("Creating compenstaion [{}]", compensation);

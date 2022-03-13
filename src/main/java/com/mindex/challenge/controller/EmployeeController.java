@@ -47,20 +47,45 @@ public class EmployeeController {
 		return employeeService.update(employee);
 	}
 
-	@GetMapping("/{id}/reportee")
+	/**
+	 * Get Mapping for getting report structure for a given employee id.
+	 * Following is the execution plan:
+	 * - A helper layer is created to assist the controller with logical flow
+	 * - EmployeeId is passed to a function which recursively calls the getEmployee details endpoint to fetch the details of the reports.
+	 * - Updated member object with reports is returned
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/{id}/reports")
 	public ReportingStructure getReportStructure(@PathVariable String id) {
 		LOG.debug("Received report structure request from id [{}]", id);
-
-		ReportingStructure reportingStructure = employeeHelper.fillReportingStructure(id);
-		return reportingStructure;
+		//Passing employee id to a method of helper class.
+		return employeeHelper.fillReportingStructure(id);
 	}
 
+	/**
+	 * Get Mapping to fetch compensation details for an employee
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/compensation/{id}")
 	public Compensation getEmployeeCompensation(@PathVariable String id) {
 		LOG.debug("Received request to fetch compensation for id [{}]", id);
 		return compensationService.getCompensation(id);
 	}
 
+	/**
+	 * Post Mapping to insert compensation details for an employee. Passing salary and effective date is compulsory.
+	 * Following is the execution plan:
+	 * - The employee details for the passed employeeId is fetched
+	 * - These employee details are then merged along with the salary and effective date information into an object of type Compensation.
+	 * - This newly created object is saved.
+	 * 
+	 * @param id
+	 * @param compenstaion
+	 * @return
+	 */
 	@PostMapping("/compensation/{id}")
 	public Compensation createCompensation(@PathVariable String id, @RequestBody Compensation compenstaion) {
 		LOG.debug("Received request to create compensation for id [{}]", id);
